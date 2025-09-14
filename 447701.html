@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    body {
+      font-family: 'Times New Roman', Times, serif;
+      background: linear-gradient(45deg, #e4dbd9, #d8d6d5);
+      display: flex;
+      justify-content: center;
+      margin: 0;
+      margin-top: 100px;
+
+    }
+
+    .to-do-container {
+      /* border: 10px solid ; */
+
+      padding: 10px 20px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      border-radius: 12px;
+      background: #fff;
+      width: 460px;
+    }
+
+    h1 {
+      text-transform: uppercase;
+      text-align: center;
+
+    }
+
+    .input-group {
+      display: flex;
+
+      gap: 5px;
+    }
+
+    #taskInput {
+      height: 25px;
+      flex: 1;
+      border: none;
+      border-radius: 5px;
+      border-bottom: 1px solid black;
+      box-shadow: 0 5 15 gray;
+      background-color: lightgray;
+      font-size: 25px;
+      padding: 10px;
+    }
+
+    #addbtn {
+      border: none;
+      border-radius: 5px;
+      background-color: blue;
+      color: whitesmoke;
+      cursor: pointer;
+    }
+
+    #addbtn:hover {
+      background: #0056b3;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+      margin-top: 10px;
+    }
+
+    li {
+      background: lightgrey;
+      padding: 10px 14px;
+      border-radius: 8px;
+      margin-bottom: 10px;
+      color: black;
+      font-size: 25px;
+      box-shadow: 0 15 5 lightblue;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: background 0.3s;
+    }
+    .del-Btn{
+      background: red;
+      color: white;
+      border: none;
+      padding: 6px 10px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 12px;
+      transition: background 0.3s;
+    }
+    
+  </style>
+</head>
+
+<body>
+  <div class="to-do-container">
+    <h1>to-do-list</h1>
+    <div class="input-group">
+      <input type="text" id="taskInput" placeholder="enter a task">
+      <button id="addbtn" onclick="addtask()">add task</button>
+    </div>
+    <ul id="list-items">
+
+    </ul>
+  </div>
+  <script>
+    function addtask() {
+      let inputTask = document.getElementById('taskInput');
+      let task = inputTask.value.trim();
+
+      // condition
+      if (task === "") {
+        alert('please enter a task');
+        return;
+      }
+      // create list-items
+      let li = document.createElement('li');
+      li.textContent= task;
+      // create delete button
+      const delBtn = document.createElement('button');
+      delBtn.textContent = "Delete";
+      delBtn.className = "del-Btn";
+
+      //  delete task on click
+
+      delBtn.addEventListener("click", () => {
+        li.remove();
+      })
+      //  append to li
+      li.appendChild(delBtn);
+      document.getElementById("list-items").appendChild(li);
+
+
+      inputTask.value = "";
+      inputTask.focus();
+
+    }
+
+  </script>
+</body>
+
+</html>
